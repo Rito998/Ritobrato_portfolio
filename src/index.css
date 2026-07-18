@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer components {
+  .nav-link-underline {
+    @apply relative inline-block;
+  }
+
+  .nav-link-underline::after {
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-white origin-right;
+    content: '';
+    transform: scaleX(0);
+    transition: transform 300ms var(--ease-spring);
+  }
+
+  .nav-link-underline:hover::after {
+    @apply origin-left;
+    transform: scaleX(1);
+  }
+
+  .role-link {
+    @apply transition-transform duration-300;
+  }
+
+  .role-link:hover {
+    transform: translateX(4px);
+  }
+
+  .btn-fill-up {
+    @apply relative overflow-hidden border border-white px-6 py-3 text-xs font-medium uppercase tracking-[-0.12px] transition-colors;
+  }
+
+  .btn-fill-up::before {
+    @apply absolute bottom-0 left-0 w-full bg-[#F598F2];
+    content: '';
+    height: 100%;
+    transform: translateY(101%);
+    transition: transform 300ms var(--ease-spring);
+    z-index: -1;
+  }
+
+  .btn-fill-up:hover::before {
+    transform: translateY(0);
+  }
+
+  .btn-fill-up:hover {
+    @apply border-[#F598F2] text-black;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply text-white;
+  background: linear-gradient(135deg, #060d1f 0%, #0d0a1f 25%, #001018 50%, #0a0a1e 75%, #060d1f 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 14s ease infinite;
+}
+
+/* Reusable animated gradient background class */
+.animated-bg {
+  background: linear-gradient(135deg, #060d1f 0%, #0d0a1f 25%, #001018 50%, #0a0a1e 75%, #060d1f 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 14s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}

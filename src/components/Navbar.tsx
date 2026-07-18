@@ -11,9 +11,8 @@ interface NavbarProps {
 
 const navItems = [
   { id: '01', label: 'Works', section: 'projects' as Section },
-  { id: '02', label: 'Services', section: 'about' as Section },
-  { id: '03', label: 'About', section: 'about' as Section },
-  { id: '04', label: 'Contact', section: 'contact' as Section },
+  { id: '02', label: 'About', section: 'about' as Section },
+  { id: '03', label: 'Contact', section: 'contact' as Section },
 ]
 
 export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
@@ -77,10 +76,7 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
                 onClick={() => handleNavClick(item.section)}
                 className="nav-link-underline group"
                 aria-current={
-                  (item.section === 'projects' && activeSection === 'projects') ||
-                    (item.section === 'about' && (activeSection === 'about' || activeSection === 'about'))
-                    ? 'page'
-                    : undefined
+                  item.section === activeSection ? 'page' : undefined
                 }
               >
                 <span className="text-[8px] leading-3 tracking-[-0.08px] font-medium uppercase">
